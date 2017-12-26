@@ -1,15 +1,13 @@
 
-module Main (
-    main
-) where
+module Main (main) where
 
-import Test.Hspec
-import Test.QuickCheck
+import Test.Hspec (describe, it, hspec, shouldBe)
+import Test.QuickCheck (Gen, sized, choose, forAll, (==>))
 
 import Data.List
 import Control.Monad
 
-import Histogram
+import Histogram (histogramCorrect, histogramFast)
 
 histograms :: Gen [Int]
 histograms = sized $ \n -> mapM (const $ choose (0, 100)) [1..n] 

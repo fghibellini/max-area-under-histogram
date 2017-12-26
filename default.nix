@@ -4,7 +4,7 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, base, containers, QuickCheck, hspec, filepath, cabal-install
+  f = { mkDerivation, base, containers, QuickCheck, hspec, filepath, cabal-install, MonadRandom
       , stdenv
       }:
       mkDerivation {
@@ -14,7 +14,7 @@ let
         isLibrary = false;
         isExecutable = true;
         executableHaskellDepends = [
-          base containers hspec QuickCheck cabal-install
+          base containers hspec QuickCheck cabal-install MonadRandom
         ];
         homepage = "http://fghibellini.com";
         license = stdenv.lib.licenses.unfree;
