@@ -1,4 +1,12 @@
-{ nixpkgs ? import <nixpkgs> {}, compiler ? "default" }:
+{ 
+  nixpkgs ? (import ((import <nixpkgs> {}).fetchFromGitHub {
+    owner = "NixOS";
+    repo = "nixpkgs-channels";
+    rev= "b568a7c673f3c4dc7b3264655c16bab788ff6193";
+    sha256 = "00i10x72yc310srgsk91yd86c2g0yjsw4kidql8j1imdf7qasw0f";
+  }) {}),
+  compiler ? "default"
+}:
 
 let
 

@@ -14,8 +14,6 @@ names <- df0[,1]
 
 lapply(names, function(name) {
   df1 <- df0[df0[,1]==name,]
-  p <- ggplot(df1, aes(V2, V3, group = V1, color = V1))
-     + geom_point()
-     + geom_line()
+  p <- ggplot(df1, aes(V2, V3, group = V1, color = V1)) + geom_point() + geom_line()
   printGraph(name, p)
 })
