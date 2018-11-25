@@ -4,6 +4,8 @@ module Histogram (
   , histogramFast
 ) where
 
+import Data.List (foldl')
+
 -- CORRECT
 
 histogramCorrect :: [Int] -> [(Int, Int)]
@@ -23,7 +25,7 @@ histogramCorrect h =
     in maxRects
 
 
--- FAST
+-- FAST (and correct)
 
 type Res = (Int, [(Int, Int)])
 
@@ -31,7 +33,7 @@ histogramFast :: [Int] -> [(Int, Int)]
 histogramFast h =
     let n = length h
         res0 = (0, [])
-        (res1, stack') = foldl stepFn (res0, []) (zip [1..] h)
+        (res1, stack') = foldl' stepFn (res0, []) (zip [1..] h)
         (maxArea, maxRects) = close (n + 1) res1 stack'
 
         stepFn :: (Res, [(Int, Int)]) -> (Int, Int) -> (Res, [(Int, Int)])
@@ -47,7 +49,7 @@ histogramFast h =
             in (res', rest'') :: (Res, [(Int, Int)])
 
         close :: Int -> Res -> [(Int, Int)] -> Res         
-        close i res0 popped = foldl (\(cmax, rects) (j, y) ->
+        close i res0 popped = foldl' (\(cmax, rects) (j, y) ->
                             let area = ((i - j) * y)
                                 rect = (j, i - 1)
                             in  if cmax > area

@@ -12,7 +12,7 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, base, containers, QuickCheck, hspec, filepath, cabal-install, MonadRandom
+  f = { mkDerivation, base, containers, QuickCheck, hspec, filepath, cabal-install, MonadRandom, deepseq
       , stdenv
       }:
       mkDerivation {
@@ -22,7 +22,7 @@ let
         isLibrary = false;
         isExecutable = true;
         executableHaskellDepends = [
-          base containers hspec QuickCheck cabal-install MonadRandom
+          base containers hspec QuickCheck cabal-install MonadRandom deepseq
         ];
         homepage = "http://fghibellini.com";
         license = stdenv.lib.licenses.unfree;
